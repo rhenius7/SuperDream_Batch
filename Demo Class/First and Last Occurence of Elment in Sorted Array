@@ -1,0 +1,47 @@
+import java.util.*;
+class Main 
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int a[]=new int[n];
+        for(int i=0;i<n;i++)
+        a[i]=sc.nextInt();
+        int low=0,high=n-1;
+        int target=sc.nextInt();
+        int p=-1,h=-1;
+        //First Occurence
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(a[mid]==target)
+            {
+                high=mid-1;
+                p=mid;
+            }
+            else if(a[mid]>target)
+            high=mid-1;
+            else 
+            low=mid+1;
+            
+        }
+        //Last Occurence
+        int left=0,right=n-1;
+        while(left<=right)
+        {
+            int mid=left+(right-left)/2;
+            if(a[mid]==target)
+            {
+                left=mid+1;
+                h=mid;
+            }
+            else if(a[mid]>target)
+            right=mid-1;
+            else 
+            left=mid+1;
+            
+        }
+        System.out.print(p+" "+h);
+    }
+}
