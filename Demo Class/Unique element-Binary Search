@@ -1,0 +1,40 @@
+import java.util.*;
+class Main 
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int a[]=new int[n];
+        for(int i=0;i<n;i++)
+        a[i]=sc.nextInt();
+        if(a[0]!=a[1])
+        {
+            System.out.print(a[0]);
+            return;
+        }
+        if(a[n-1]!=a[n-2])
+        {
+            System.out.print(a[1]);
+            return;
+        }
+        int low=2,high=n-3;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            //check if the mid element is the unique element
+            if(a[mid]!=a[mid+1]&&a[mid]!=a[mid-1])
+            {
+                System.out.print(a[mid]);
+                return;
+            }
+            //find out the starting index of pair
+            int start=a[mid]==a[mid-1]?mid-1:mid;
+            //if it is in even index it means unique element lies on right
+            if(start%2==0)
+            low=start+2;
+            else
+            high=start-1;
+        }
+    }
+}
